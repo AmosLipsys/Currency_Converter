@@ -1,26 +1,27 @@
 package com.example.mossy.assingment1;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 public class MainActivity extends AppCompatActivity {
+
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         // Create Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        new doit().execute();
+
     }
 
     @Override
@@ -49,29 +50,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public class doit extends AsyncTask<Void, Void, Void> {
-        String words;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            String url = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
-
-            try {
-                Document doc = Jsoup.connect(url).get();
-                words = doc.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-//            status_view.setText(words);
-        }
-    }
 
 }
 

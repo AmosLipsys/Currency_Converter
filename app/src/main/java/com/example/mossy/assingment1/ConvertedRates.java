@@ -8,7 +8,10 @@ import java.util.Map;
  */
 
 public class ConvertedRates {
+    String date = "2017-03-29";
+
     Map<String, Double> currency_rates = new HashMap<String, Double>();
+
     public ConvertedRates(){
         // Set Default. 7:54pm 30th March 2017
         // This is just in case there is no internet for updated exchange rates.
@@ -45,5 +48,22 @@ public class ConvertedRates {
         currency_rates.put("SGD", 1.5006);
         currency_rates.put("THB", 37.011);
         currency_rates.put("ZAR", 14.1215);
+    }
+
+    public Map<String, Double> getCurrency_rates() {
+        return currency_rates;
+    }
+
+    public void setCurrency_rates(Map<String, Double> currency_rates) {
+        this.currency_rates = currency_rates;
+    }
+
+    public String getDate() {
+
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

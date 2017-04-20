@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -29,6 +30,15 @@ public class SettingsFragment extends Fragment {
         View root_view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         preferences = this.getActivity().getSharedPreferences("values", MODE_PRIVATE);
+        Button update_button = (Button) root_view.findViewById(R.id.update_exchange_butt);
+        update_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                preferences.edit()
+                        .putBoolean("force_update", true)
+                        .apply();
+                // Perform action on click
+            }
+        });
 
         // Set Checkbox Listener
         final CheckBox more_countries_checkbox = (CheckBox) root_view.findViewById(R.id.more_countries_checkbox);
@@ -38,8 +48,11 @@ public class SettingsFragment extends Fragment {
                 preferences.edit()
                         .putBoolean("want_short_list", !more_countries_checkbox.isChecked())
                         .apply();
+
+
             }
         });
+
 
         more_countries_checkbox.setChecked(!preferences.getBoolean("want_short_list", true));
 
